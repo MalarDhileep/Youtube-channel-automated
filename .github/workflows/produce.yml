@@ -1,0 +1,87 @@
+name: Produce Shorts
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**"]
+  schedule:
+    - cron: "5 18 * * *"   # 00:05 IST daily
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date to produce, YYYY-MM-DD (leave empty for all pending up to today IST)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Build only, do not upload"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: produce
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      # Public scheduling needs this AND publishing.public_publishing_enabled: true in config/channel.yaml.
+      PUBLIC_PUBLISHING_APPROVED: ${{ vars.PUBLIC_PUBLISHING_APPROVED }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install ffmpeg and fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Validate all content
+        run: python -m pipeline.run validate
+
+      - name: Produce
+        env:
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          args=""
+          if [ -n "$INPUT_DATE" ]; then args="--date $INPUT_DATE"; else args="--pending"; fi
+          if [ "$INPUT_DRY_RUN" = "true" ]; then args="$args --dry-run"; fi
+          python -m pipeline.run produce $args
+
+      - name: Commit ledger and status
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/ledger.json STATUS.md
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "chore: update ledger and status [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload build artifacts (on failure, for debugging)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: build/**/thumbnail.jpg
+          if-no-files-found: ignore

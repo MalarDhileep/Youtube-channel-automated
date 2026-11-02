@@ -1,0 +1,40 @@
+# Channel settings for "Learn Everything".
+# The `publishing` section is owned by the channel owner. Automation (including
+# Claude) must never edit it.
+
+channel:
+  name: "Learn Everything"
+  language: ta-IN
+  category_id: "27"          # YouTube category: Education
+  made_for_kids: false
+  default_tags:
+    - Shorts
+    - AI tools
+    - Tamil
+  topics:
+    - ai-tools
+    - ai-learning
+    - stock-basics
+
+video:
+  width: 1080
+  height: 1920
+  fps: 30
+  min_seconds: 45
+  max_seconds: 60
+  scene_pad_seconds: 0.35
+  crf: 20
+
+voice:
+  engine: edge-tts
+  name: ta-IN-PallaviNeural   # alternative: ta-IN-ValluvarNeural
+  rate: "+0%"
+  max_rate_boost_percent: 20   # speed-up allowed to fit the max duration
+
+disclaimers:
+  sebi: "Educational content only. Not investment advice. I am not a SEBI registered advisor. Do your own research."
+  ai_voice: "Voice-over is AI generated."
+
+publishing:
+  public_publishing_enabled: false
+  publish_time_ist: "18:00"

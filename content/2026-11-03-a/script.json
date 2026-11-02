@@ -1,0 +1,48 @@
+{
+  "id": "2026-11-03-a",
+  "date": "2026-11-03",
+  "category": "ai-tools",
+  "language": "ta-IN",
+  "scenes": [
+    {
+      "narration_ta": "படிக்க நிறைய நோட்ஸ் இருக்கா? AI உங்களுக்கு உதவும்!",
+      "on_screen_text": "Too many notes to study?",
+      "duration_sec": 5
+    },
+    {
+      "narration_ta": "Gemini Notebook என்பது கூகுளின் ஒரு AI ஆராய்ச்சி மற்றும் குறிப்பு கருவி.",
+      "on_screen_text": "Meet Gemini Notebook, Google's AI research tool",
+      "duration_sec": 7
+    },
+    {
+      "narration_ta": "முதலில், உங்கள் சொந்த நோட்ஸ், PDF அல்லது இணைப்புகளை அதில் சேர்க்கவும்.",
+      "on_screen_text": "Step 1: Add your own notes, PDFs or links",
+      "duration_sec": 7
+    },
+    {
+      "narration_ta": "பிறகு, உங்கள் பாடத்தைப் பற்றி கேள்விகள் கேளுங்கள். பதில்கள் நீங்கள் சேர்த்த ஆவணங்களை அடிப்படையாகக் கொண்டிருக்கும்.",
+      "on_screen_text": "Step 2: Ask questions about your material",
+      "duration_sec": 7
+    },
+    {
+      "narration_ta": "சிக்கலான பாடங்களை எளிய விளக்கமாக மாற்றி புரிந்துகொள்ள இது உதவும்.",
+      "on_screen_text": "Turn complex notes into clear explanations",
+      "duration_sec": 7
+    },
+    {
+      "narration_ta": "அடுத்து, ஒரு சுருக்கம் கேட்டு, விரைவாக திருப்புதல் செய்யுங்கள்.",
+      "on_screen_text": "Step 3: Ask for a quick summary",
+      "duration_sec": 7
+    },
+    {
+      "narration_ta": "AI சில நேரங்களில் தவறு செய்யலாம். முக்கியமான தகவல்களை எப்போதும் சரிபார்க்கவும்.",
+      "on_screen_text": "AI can make mistakes. Double-check key facts.",
+      "duration_sec": 8
+    },
+    {
+      "narration_ta": "இது போன்ற AI டிப்ஸ்களுக்கு, Learn Everything சேனலை பின்தொடருங்கள்!",
+      "on_screen_text": "Follow Learn Everything for more AI tips",
+      "duration_sec": 6
+    }
+  ]
+}

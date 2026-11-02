@@ -1,0 +1,21 @@
+{
+  "title": "Study Smarter with Gemini Notebook (AI Tip)",
+  "description": "A quick, practical way to use Google's Gemini Notebook, an AI research tool, on your own notes and sources: ask questions and get clearer explanations and summaries. Tamil voice-over, English on-screen text.\n\nAI can make mistakes, so always double-check important facts against your original material.",
+  "tags": [
+    "Gemini Notebook",
+    "AI for students",
+    "study tips",
+    "AI tools",
+    "Tamil"
+  ],
+  "category": "ai-tools",
+  "sources": [
+    {
+      "title": "Gemini Notebook (official site)",
+      "url": "https://notebook.google/"
+    }
+  ],
+  "thumbnail": {
+    "text": "Study Smarter with AI"
+  }
+}
